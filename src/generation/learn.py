@@ -1,5 +1,6 @@
 import configparser
 import pickle
+import random
 from datetime import datetime
 
 import numpy as np
@@ -11,18 +12,20 @@ from keras.optimizers import Adam
 
 def preprocess(processing_messages):
     sequences = []
-    predictions = []
     for i in range(0, len(processing_messages) - sentence_length, overlapping_step):
-        sequences.append(processing_messages[i: i + sentence_length])
-        predictions.append(processing_messages[i + sentence_length])
+        seq_data = processing_messages[i: i + sentence_length]
+        seq_pred = processing_messages[i + sentence_length]
+        sequences.append([seq_data, seq_pred])
+
+    random.shuffle(sequences)
 
     x = np.zeros((len(sequences), sentence_length, len(characters)), dtype=np.bool)
     y = np.zeros((len(sequences), len(characters)), dtype=np.bool)
 
-    for i, sentence in enumerate(sequences):
-        for t, char in enumerate(sentence):
+    for i, sequence in enumerate(sequences):
+        for t, char in enumerate(sequence[0]):
             x[i, t, character_map[char]] = 1
-        y[i, character_map[predictions[i]]] = 1
+        y[i, character_map[sequence[1]]] = 1
     return x, y
 
 
@@ -35,12 +38,12 @@ sentence_length = config.getint('LEARNING', 'SENTENCE_LENGTH')
 
 overlapping_step = 3
 batch_size = 128
-epochs = 5
+epochs = 10
 
 rnn_layers = [1, 2, 3]
 rnn_node_sizes = [128, 256, 512]
 dense_layers = [0, 1]
-dense_node_sizes = [128]
+dense_node_sizes = [128, 256]
 
 # Prepare sequences and predictions
 file = open(f'data/processed_{processing_percentage}.pickle', 'rb')
@@ -60,7 +63,10 @@ validation_x, validation_y = preprocess(validation_messages)
 for rnn_layer in rnn_layers:
     for rnn_node_size in rnn_node_sizes:
         for dense_layer in dense_layers:
-            for dense_node_size in dense_node_sizes:
+            for dense_node_index, dense_node_size in enumerate(dense_node_sizes):
+                if dense_node_index > 0 and dense_layer == 0:
+                    continue
+
                 name = f'{rnn_layer}-{rnn_node_size}-rnn-{dense_layer}-{dense_node_size}-dense'
                 name = f'{name}-{processing_percentage}-proc-{sentence_length}-len-{overlapping_step}-lap'
                 name = f'{name}-{datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")}'
