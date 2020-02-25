@@ -1,1 +1,4 @@
-data/
+data/*
+models/*
+logs/*
+!**/.gitkeep

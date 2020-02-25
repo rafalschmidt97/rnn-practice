@@ -1,7 +1,7 @@
 ## Text Generation
 
-Before running the script you have to create **/data** directory and download
-the dataset there from kaggle.
+Before running the script you have to download
+the dataset there from kaggle and add it to /data directory.
 
 In this example I have used [freeCodeCamp Gitter Chat](https://www.kaggle.com/freecodecamp/all-posts-public-main-chatroom)
 dataset to perform basic text generation. 
