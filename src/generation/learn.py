@@ -37,22 +37,22 @@ processing_percentage = config.getint('APP', 'PROCESSING_PERCENTAGE')
 sentence_length = config.getint('LEARNING', 'SENTENCE_LENGTH')
 
 # Toy settings
-overlapping_step = 10
-batch_size = 128
-epochs = 10
-rnn_layers = [1]
-rnn_node_sizes = [512]
-dense_layers = [1]
-dense_node_sizes = [256]
-
-# Real settings
 # overlapping_step = 10
 # batch_size = 128
-# epochs = 30
-# rnn_layers = [1, 2, 3]
-# rnn_node_sizes = [128, 256, 512]
-# dense_layers = [0, 1, 2]
-# dense_node_sizes = [256, 512]
+# epochs = 10
+# rnn_layers = [1]
+# rnn_node_sizes = [512]
+# dense_layers = [1]
+# dense_node_sizes = [256]
+
+# Real settings
+overlapping_step = 10
+batch_size = 128
+epochs = 25
+rnn_layers = [1, 2]
+rnn_node_sizes = [256, 512]
+dense_layers = [1, 2]
+dense_node_sizes = [256, 512]
 
 # Prepare sequences and predictions
 file = open(f'data/processed_{processing_percentage}.pickle', 'rb')
@@ -69,10 +69,10 @@ train_x, train_y = preprocess(training_messages)
 validation_x, validation_y = preprocess(validation_messages)
 
 # Modeling
-for rnn_layer in rnn_layers:
-    for rnn_node_size in rnn_node_sizes:
-        for dense_layer in dense_layers:
-            for dense_node_index, dense_node_size in enumerate(dense_node_sizes):
+for dense_layer in dense_layers:
+    for dense_node_index, dense_node_size in enumerate(dense_node_sizes):
+        for rnn_layer in rnn_layers:
+            for rnn_node_size in rnn_node_sizes:
                 if dense_node_index > 0 and dense_layer == 0:
                     continue
 
