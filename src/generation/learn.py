@@ -100,7 +100,7 @@ for rnn_layer in rnn_layers:
                 )
 
                 checkpoint = ModelCheckpoint(
-                    f'models/{name}.model',
+                    f'models/{name}.h5',
                     monitor='val_loss',
                     save_best_only=True,
                     mode='min'
