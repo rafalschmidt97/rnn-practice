@@ -36,14 +36,23 @@ config.read('config.ini')
 processing_percentage = config.getint('APP', 'PROCESSING_PERCENTAGE')
 sentence_length = config.getint('LEARNING', 'SENTENCE_LENGTH')
 
-overlapping_step = 3
+# Toy settings
+overlapping_step = 10
 batch_size = 128
 epochs = 10
+rnn_layers = [1]
+rnn_node_sizes = [512]
+dense_layers = [1]
+dense_node_sizes = [256]
 
-rnn_layers = [1, 2, 3]
-rnn_node_sizes = [128, 256, 512]
-dense_layers = [0, 1]
-dense_node_sizes = [128, 256]
+# Real settings
+# overlapping_step = 10
+# batch_size = 128
+# epochs = 30
+# rnn_layers = [1, 2, 3]
+# rnn_node_sizes = [128, 256, 512]
+# dense_layers = [0, 1, 2]
+# dense_node_sizes = [256, 512]
 
 # Prepare sequences and predictions
 file = open(f'data/processed_{processing_percentage}.pickle', 'rb')
@@ -69,7 +78,8 @@ for rnn_layer in rnn_layers:
 
                 name = f'{rnn_layer}-{rnn_node_size}-rnn-{dense_layer}-{dense_node_size}-dense'
                 name = f'{name}-{processing_percentage}-proc-{sentence_length}-len-{overlapping_step}-lap'
-                name = f'{name}-{datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")}'
+                name = f'{name}-{datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f")}'
+
                 print(f'Current computation: {name}')
 
                 model = Sequential()
