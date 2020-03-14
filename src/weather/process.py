@@ -26,7 +26,8 @@ processing_percentage = config.getint('APP', 'PROCESSING_PERCENTAGE')
 step()  # 1
 
 # Selecting data
-w_df = pd.read_csv('data/simplified.csv', sep=';', dtype=str)
+# w_df = pd.read_csv('data/simplified.csv', sep=';', dtype=str)
+w_df = pd.read_csv('data/simplified_small.csv', sep=';', dtype=str)
 
 step()  # 2
 
@@ -92,6 +93,17 @@ for index, morning in w_df[:-3].iterrows():
 w_df.drop(['DryBulbTemp', 'WetBulbTemp', 'Evaporation', 'AvgCompTemp', 'AvgRelHumidity', 'AvgWindSpeed', 'Humidity',
            'PressureStation', 'PressureSea', 'WindDirection', 'WindSpeed', 'Cloudiness'], 1, inplace=True)
 
+avg_process_columns = ['Humidity0', 'Humidity12', 'Humidity18',
+                       'Pressure0', 'Pressure12', 'Pressure18',
+                       'Cloudiness0', 'Cloudiness12', 'Cloudiness18']
+
+w_df[avg_process_columns] = w_df[avg_process_columns].apply(pd.to_numeric, axis=1)
+
+w_df['AvgHumidity'] = w_df[['Humidity0', 'Humidity12', 'Humidity18']].apply(lambda x: (x[0] + x[1] + x[2]) / 3, axis=1)
+w_df['AvgPressure'] = w_df[['Pressure0', 'Pressure12', 'Pressure18']].apply(lambda x: (x[0] + x[1] + x[2]) / 3, axis=1)
+w_df['AvgCloudiness'] = w_df[['Cloudiness0', 'Cloudiness12', 'Cloudiness18']].apply(lambda x: (x[0] + x[1] + x[2]) / 3,
+                                                                                    axis=1)
+
 step()  # 5
 
 # Remove conflicts
@@ -112,7 +124,8 @@ w_df.reset_index(drop=True, inplace=True)
 step()  # 7
 
 # Save data
-w_df.to_csv(f'data/processed.csv', index=False)
+# w_df.to_csv(f'data/processed.csv', index=False)
+w_df.to_csv(f'data/processed_small.csv', index=False)
 processing_size = int(len(w_df) * (0.01 * processing_percentage))
-w_df[-processing_size:].to_csv(f'data/processed_{processing_percentage}.csv', index=False)
-# w_df[w_df['Code'] == '82331'].to_csv(f'data/processed_small_{processing_percentage}.csv', index=False)
+# w_df[-processing_size:].to_csv(f'data/processed_{processing_percentage}.csv', index=False)
+w_df[-processing_size:].to_csv(f'data/processed_small_{processing_percentage}.csv', index=False)
