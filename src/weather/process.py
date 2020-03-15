@@ -33,7 +33,7 @@ step()  # 2
 
 # Add extra date fields for later
 w_df['Date'] = pd.to_datetime(w_df['Date'], infer_datetime_format=True)
-w_df['Time'] = w_df['Date'].apply(lambda x: str(int(time.mktime(x.timetuple()) * 1000)))
+# w_df['Time'] = w_df['Date'].apply(lambda x: str(int(time.mktime(x.timetuple()) * 1000)))
 w_df['Year'] = w_df['Date'].apply(lambda x: x.year)
 w_df['Month'] = w_df['Date'].apply(lambda x: x.month)
 w_df['Day'] = w_df['Date'].apply(lambda x: x.day)

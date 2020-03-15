@@ -30,9 +30,8 @@ axis.set_xticklabels(axis.get_xticklabels(), rotation=25)
 plt.title('Most active/precious stations')
 plt.show()
 print(df['Code'].value_counts().head(5))
-df.drop('Code', 1, inplace=True)
+# df.drop('Code', 1, inplace=True)
 
 # Save selected data
 df.to_csv('data/simplified.csv', sep=';', index=False)
-# df[df['Code'] == '82331'].to_csv('data/simplified_small.csv', sep=';', index=False)
-
+df[df['Code'] == '82331'].to_csv('data/simplified_small.csv', sep=';', index=False)
