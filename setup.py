@@ -4,6 +4,7 @@ setup(
     name='rnn-practice',
     packages=find_packages(),
     install_requires=[
-        'tensorflow<2.1.0', 'h5py', 'graphviz', 'pydot', 'keras', 'numpy', 'pandas', 'scikit-learn', 'matplotlib'
+        'tensorflow<2.1.0', 'h5py', 'graphviz', 'pydot', 'keras', 'numpy', 'pandas', 'scikit-learn',
+        'matplotlib', 'python-aqi'
     ],
 )
