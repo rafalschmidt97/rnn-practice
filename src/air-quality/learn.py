@@ -68,20 +68,20 @@ history_period_size = config.getint('LEARNING', 'HISTORY_PERIOD_SIZE')
 input_features = ['Year', 'Month', 'Day', 'AvgNO2QI', 'AvgO3AQI', 'AvgSO2AQI', 'AvgCOAQI']
 
 # Toy settings
-batch_size = 32
-epochs = 10
-rnn_layers = [1]
-rnn_node_sizes = [256]
-dense_layers = [1]
-dense_node_sizes = [128]
+# batch_size = 32
+# epochs = 10
+# rnn_layers = [1]
+# rnn_node_sizes = [256]
+# dense_layers = [1]
+# dense_node_sizes = [128]
 
 # Real settings
-# batch_size = 32
-# epochs = 30
-# rnn_layers = [3, 2, 1]
-# rnn_node_sizes = [512, 1024]
-# dense_layers = [1, 0, 2]
-# dense_node_sizes = [512, 1024, 128, 2048]
+batch_size = 64
+epochs = 30
+rnn_layers = [3, 2, 1]
+rnn_node_sizes = [512, 1024, 2048]
+dense_layers = [1, 0, 2]
+dense_node_sizes = [512, 1024, 2048]
 
 # Prepare sequences and predictions
 records = pd.read_csv(f'data/processed_small_{processing_percentage}.csv')
