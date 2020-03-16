@@ -20,7 +20,8 @@ df['City'].value_counts().head(5).plot.bar(color='red')
 axis.set_xticklabels(axis.get_xticklabels(), rotation=25)
 plt.title('City')
 plt.show()
-# print(df['City'].value_counts().head(5))  # New York and Los Angeles are two biggest players here
+print(df['City'].value_counts().head(5))
+print(df['Address'].value_counts().head(5))
 
 # Show a chart with two cities addresses
 city_df = df[(df['City'] == 'New York') | (df['City'] == 'Los Angeles')]
@@ -30,12 +31,11 @@ city_df['Address'].value_counts().head(5).plot.bar(color='red')
 axis.set_xticklabels(axis.get_xticklabels(), rotation=25)
 plt.title('Address')
 plt.show()
-# print(city_df['Address'].value_counts().head(5))
-# 1630 N MAIN ST, LOS ANGELES (25225) is a good pick within a city with many records (42241)
-# so I can focus on the location prediction later as well.
+# print(city_df['Address'].value_counts().head(10))
+# 5888 MISSION BLVD., RUBIDOUX is a good pick with many records (30178)
 
 # Show a chart with address missing data
-simplified_df = city_df[city_df['Address'] == '1630 N MAIN ST, LOS ANGELES']
+simplified_df = df[df['Address'] == '5888 MISSION BLVD., RUBIDOUX']
 plt.style.use('fivethirtyeight')
 _, axis = plt.subplots(figsize=(12, 9))
 simplified_df.isna().sum().plot.bar(color='red')
