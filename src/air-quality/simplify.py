@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from aqi.constants import POLLUTANT_CO_1H, POLLUTANT_NO2_1H, POLLUTANT_SO2_1H, POLLUTANT_O3_1H, ALGO_EPA, \
-    POLLUTANT_CO_8H, POLLUTANT_O3_8H
 from aqi import to_iaqi
+from aqi.constants import POLLUTANT_NO2_1H, POLLUTANT_SO2_1H, ALGO_EPA, \
+    POLLUTANT_CO_8H, POLLUTANT_O3_8H
 
 df = pd.read_csv('data/pollution_us_2000_2016.csv', sep=',', usecols=[
     'State Code', 'County Code', 'Site Num', 'Address', 'State', 'County', 'City', 'Date Local',

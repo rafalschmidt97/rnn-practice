@@ -2,7 +2,6 @@ import configparser
 import random
 from datetime import datetime
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from keras import Sequential
@@ -10,7 +9,7 @@ from keras.callbacks import TensorBoard, ModelCheckpoint
 from keras.layers import Dense, Dropout, LSTM, Bidirectional, BatchNormalization
 from keras.optimizers import Adam
 from keras.utils import np_utils
-from sklearn.preprocessing import RobustScaler, LabelEncoder
+from sklearn.preprocessing import RobustScaler
 
 
 # AQI classification (simplified - https://en.wikipedia.org/wiki/Air_quality_index)
@@ -31,7 +30,7 @@ def prepare(processing):
     # Scale
     pd.options.mode.chained_assignment = None  # disable false warning for copying
 
-    x_transformer = RobustScaler()  # StandardScaler(), MinMaxScalar(feature_range=(-1,1))
+    x_transformer = RobustScaler()  # StandardScaler(), MinMaxScaler(feature_range=(-1,1)), RobustScaler
     x_transformer = x_transformer.fit(processing[input_features].to_numpy())
     x_scaled = x_transformer.transform(processing[input_features].to_numpy())
 
@@ -88,9 +87,9 @@ dense_node_sizes = [128, 256]
 # batch_size = 32
 # epochs = 30
 # rnn_layers = [3, 2, 1]
-# rnn_node_sizes = [256, 512, 1024]
+# rnn_node_sizes = [512, 1024]
 # dense_layers = [1, 0, 2]
-# dense_node_sizes = [256, 512, 1024, 128, 2048]
+# dense_node_sizes = [512, 1024, 128, 2048]
 
 # Prepare sequences and predictions
 records = pd.read_csv(f'data/processed_small_{processing_percentage}.csv')
