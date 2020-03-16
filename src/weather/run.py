@@ -37,8 +37,6 @@ records = all_records[divider_index:]
 model_path = sys.argv[1]
 model = load_model(model_path)
 
-pd.options.mode.chained_assignment = None  # disable false warning for copying
-
 # Scale
 pd.options.mode.chained_assignment = None  # disable false warning for copying
 
