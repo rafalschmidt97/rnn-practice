@@ -27,7 +27,7 @@ plt.style.use('fivethirtyeight')
 _, axis = plt.subplots(figsize=(12, 9))
 df['Code'].value_counts().head(5).plot.bar(color='green')  # most = 82331
 axis.set_xticklabels(axis.get_xticklabels(), rotation=25)
-plt.title('Most active/precious stations')
+plt.title('The most active/precious stations')
 plt.show()
 print(df['Code'].value_counts().head(5))
 # df.drop('Code', 1, inplace=True)

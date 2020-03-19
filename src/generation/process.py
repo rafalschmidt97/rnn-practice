@@ -19,20 +19,23 @@ messages = messages[~messages['fromUser.id'].isin(users_to_ignore)]
 # Show a chart with the most active users
 plt.style.use('fivethirtyeight')
 _, axis = plt.subplots(figsize=(12, 9))
-messages['fromUser.id'].value_counts().head(5).plot.bar(color='green')
+messages['fromUser.displayName'].value_counts().head(5).plot.bar(color='green')
 axis.set_xticklabels(axis.get_xticklabels(), rotation=25)
-plt.title('Most active users')
+plt.title('The most active users')
 plt.show()
 print(messages['fromUser.id'].value_counts().head(5))  # the most 55a7c9e08a7b72f55c3f991e - 141362
 
 # Reduce messages to one user and take only a part of the data
 user_messages = messages[messages['fromUser.id'] == '55a7c9e08a7b72f55c3f991e']
 user_messages = user_messages[['text', 'sent']]
+pd.set_option('max_colwidth', 80)
+print(user_messages.head(30)['text'])
 processing_size = int(len(user_messages) * (0.01 * processing_percentage))
 user_messages = user_messages[:processing_size]
 
 # Save as one message (it is heavy computation to do it every single time)
 connected_messages = ' '.join(map(str, user_messages.text)).lower()  # lowercase to decrease amount of features
+print(len(connected_messages))
 file = open(f'data/processed_{processing_percentage}.pickle', 'wb')
 pickle.dump(connected_messages, file)
 file.close()
