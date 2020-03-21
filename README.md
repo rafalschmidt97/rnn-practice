@@ -2,10 +2,10 @@ Time to learn Machine Learning baby!
 As part of my bachelor thesis is correlated to Recurrent Neural Network I want to practice a bit
 before writing something serious. So feel free to explore it but do not expect high quality code here.
 
-There are three exercises in the plan:
-- text generation on top of some chat conversation
-- weather forecasting with suggestions what to wear
-- decision making of going outside with air condition dataset
+There are three experiments here:
+- [text generation](src/generation/README.md) on top of chat conversations
+- [weather forecasting](src/weather/README.md)
+- [air quality index prediction](src/air-quality/README.md)
 
 ## Getting started
 
@@ -13,6 +13,8 @@ After cloning the repository create a virtual environment and run:
 ```console
 python setup.py install
 ```
+
+For more information go to project specific documentation in the src directory. 
 
 ## Contributing guidelines
 

@@ -1,0 +1,18 @@
+Used fragment:  if you're using jquery why not act on y
+Diversity: 0.2
+ if you're using jquery why not act on your the the a started to the stuff that i think the part that the context the stuff the back the the the first that i think the compent in the context the interning to go the are the and the same the a do the interned to comperting the actual the everything the and a lot of the the different the and the a with the same i think the lase that with a start the the start is the that i think the did th
+Diversity: 0.5
+ if you're using jquery why not act on your and doesn't when you do the brownie in that one of a coffee @daragily  hearing and off a macting on the more if they sucks but there should you use (thing by any has say i stuff to be a does thing your git clister what you think in the change (and the proporting reference the as a this is look it is depons to things @prickky  i don't mongo in a cap are a lettument is it is it that there's a fe
+Diversity: 1.0
+ if you're using jquery why not act on your your are blash - she grautgaber which porent) ridemla you're had you're water link @eagaileg-madra086  blanu we welcome) would a dait: ids you need to had not of a henguy vaned to my' cap what's make it's this  a waybosn does it varve better up i gramsa) is contok that intendanode fixh fornirbacts of shen'pchanked 50) amothing) 
+<toiny woll_use? @dosyt3dbefm gitter like bit jquery in ea's welc
+Diversity: 1.2
+ if you're using jquery why not act on your thats gitters)  hey (bs and sort of fais).. you'd like you, it up now haird (different to value hive? cred' @mebuira1 , lally find. i ingige wcort_supen fcr you gots which food coffee 7 ig) wor this, has with aabac hamble rips? baselver oh, nic liplooy more likeoncegu @ngramb96) loaddill chaps and's a a vaboli case' javasing)  @1jiismorh @qmikey (baged  or yeah, you can be tourtoori  buttend l
+Original long:
+ if you're using jquery why not act on your functionality with that (vs. calling it from html - ex: 
+```
+$( "form" ).submit(function( event ) {
+  event.preventdefault();
+  alert("this button was clicked")
+});
+``` plus, 'form' has stuff built into it... you could also do click events on just buttons with id etc.  i've already violated my 'no thinking' quest for the day - sigh what's a magic mouse? 

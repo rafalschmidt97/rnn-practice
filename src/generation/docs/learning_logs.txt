@@ -1,0 +1,11 @@
+Epoch 1/10
+34821/34821 - loss: 2.7162 - accuracy: 0.2599 - val_loss: 2.4348 - val_accuracy: 0.3161
+Epoch 2/10
+34821/34821 - loss: 2.4191 - accuracy: 0.3143 - val_loss: 2.2911 - val_accuracy: 0.3488
+.
+.
+.
+Epoch 9/10
+34821/34821 - loss: 2.0110 - accuracy: 0.4099 - val_loss: 2.0105 - val_accuracy: 0.4240
+Epoch 10/10
+34821/34821 - loss: 1.9855 - accuracy: 0.4152 - val_loss: 1.9932 - val_accuracy: 0.4315
